@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: nginx-rs
+  labels:
+    app: nginx
+spec:
+  selector:
+    matchLabels:
+      app: nginx
+  minReadySeconds: 30
+  replicas: 4
+  template:
+    metadata:
+      name: nginx-rc
+      labels:
+        app: nginx
+    spec:
+      initContainers:
+        - name: initcon
+          command:
+            - sleep
+            - "50"
+      containers:
+        - name: nginx
+          image: nginx:1.23
+          ports:
+            - containerPort: 80
