@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: nginx
-  minReadySeconds: 30
+  minReadySeconds: 50
   replicas: 4
   template:
     metadata:
@@ -17,10 +17,11 @@ spec:
         app: nginx
     spec:
       initContainers:
-        - name: initcon
+        - name: init-cont1
+          image: alpine
           command:
             - sleep
-            - "50"
+            - "30"
       containers:
         - name: nginx
           image: nginx:1.23
