@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: mysql-rs
+  labels:
+    app: mysql
+    ver: lts
+spec:
+  selector:
+    app: mysql
+  minReadySeconds: 15
+  replicas: 2
+  template:
+    metadata:
+      name: mysql
+      labels:
+        app: mysql
+        ver: lts
+    spec:
+      containers:
+        - env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: password
+            - name: MYSQL_DATABASE
+              value: table_emp
+            - name: MYSQL_USER
+              value: jayant
+            - name: MYSQL_PASSWORD
+              value: password
+          name: mysql
+          image: mysql:8
+          ports:
+            - containerPort: 3306
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "250m"
+            limits:
+              memory: "128Mi"
+              cpu: "500m"  
+              
