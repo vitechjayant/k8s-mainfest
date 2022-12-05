@@ -14,12 +14,8 @@ spec:
         ver: lts
     spec:
       containers:
-        - name: alpine
-          image: alpine:3
-          command:
-            - sleep
-          args:
-            - 1d        
+        - name: nginx
+          image: nginx:1.23       
   selector:
     matchLabels:
       app: demonset
