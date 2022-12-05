@@ -5,6 +5,10 @@ metadata:
   namespace: k8s-self
 spec:
   minReadySeconds: 30
+  replicas: 3
+  strategy:
+          rollingUpdate: 
+            maxUnavailable: 1
   selector:
     matchLabels:
       app: nginx
@@ -16,10 +20,6 @@ spec:
       containers:
       - name: nginx-deployment
         image: nginx:1.23
-        replicas: 2
-        strategy:
-          rollingUpdate: 
-            maxUnavailable: 1
         resources:
           limits:
             memory: "128Mi"
