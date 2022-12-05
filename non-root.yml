@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: non-root-pod
+  namespace: k8s-self
+  labels:
+    app: nginx
+spec:
+  containers:
+  - name: non-root-pod
+    securityContext:
+      runAsNonRoot: true
+    image: nginx:1.23
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
