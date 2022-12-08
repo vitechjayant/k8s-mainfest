@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: jenkins-deployment
   namespace: k8s-self
 spec:
   
@@ -19,7 +19,7 @@ spec:
         app: nginx
     spec:
       containers:
-      - name: nginx-deployment
+      - name: jenkins-deployment
         image: jenkins/jenkins
         resources:
           limits:
